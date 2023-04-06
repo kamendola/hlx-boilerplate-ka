@@ -3,7 +3,7 @@ Your project's description...
 
 ## Environments
 - Preview: https://main--hlx-boilerplate-ka--kamendola.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Live: https://main--hlx-boilerplate-ka--kamendola.hlx.live/
 
 ## Installation
 
