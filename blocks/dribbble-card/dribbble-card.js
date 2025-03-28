@@ -1,27 +1,20 @@
 export default function decorate(block) {
-  // Get the content from the block
+  // Get all rows from the block
   const rows = [...block.children];
+  console.log('Number of rows found:', rows.length); // Debug log
   
   // Create the card structure
   const card = document.createElement('div');
   card.className = 'dribbble-card';
   
-  // Extract content from the Franklin block structure
-  // Assuming the block has rows with specific content
-  // Row 1: Image
-  // Row 2: Title and Subtitle
-  // Row 3: Description
-  // Row 4: Author Image and Name
-  // Row 5: Action Button
-  
-  // Create image container
+  // Create image container (Row 1)
   if (rows[0]) {
     const imageContainer = document.createElement('div');
     imageContainer.className = 'dribbble-card-image-container';
     
-    // Get image from first cell of first row
-    const imgCell = rows[0].children[0];
-    const img = imgCell.querySelector('img') || imgCell.querySelector('picture');
+    // Get image from first cell
+    const imgCell = rows[0].querySelector('div');
+    const img = imgCell ? (imgCell.querySelector('img') || imgCell.querySelector('picture')) : null;
     
     if (img) {
       img.className = 'dribbble-card-image';
@@ -35,35 +28,37 @@ export default function decorate(block) {
   const contentContainer = document.createElement('div');
   contentContainer.className = 'dribbble-card-content';
   
-  // Create header with title and subtitle
+  // Create header with title (Row 2) and subtitle (Row 3)
+  const header = document.createElement('div');
+  header.className = 'dribbble-card-header';
+  
+  // Title from Row 2
   if (rows[1]) {
-    const header = document.createElement('div');
-    header.className = 'dribbble-card-header';
-    
-    const titleCell = rows[1].children[0];
-    const subtitleCell = rows[1].children.length > 1 ? rows[1].children[1] : null;
-    
+    const titleCell = rows[1].querySelector('div');
     if (titleCell) {
       const title = document.createElement('h3');
       title.className = 'dribbble-card-title';
       title.textContent = titleCell.textContent.trim();
       header.appendChild(title);
     }
-    
+  }
+  
+  // Subtitle from Row 3
+  if (rows[2]) {
+    const subtitleCell = rows[2].querySelector('div');
     if (subtitleCell) {
       const subtitle = document.createElement('p');
       subtitle.className = 'dribbble-card-subtitle';
       subtitle.textContent = subtitleCell.textContent.trim();
       header.appendChild(subtitle);
     }
-    
-    contentContainer.appendChild(header);
   }
   
-  // Add description
-  if (rows[2]) {
-    const descriptionCell = rows[2].children[0];
-    
+  contentContainer.appendChild(header);
+  
+  // Description from Row 4
+  if (rows[3]) {
+    const descriptionCell = rows[3].querySelector('div');
     if (descriptionCell) {
       const description = document.createElement('p');
       description.className = 'dribbble-card-description';
@@ -72,41 +67,41 @@ export default function decorate(block) {
     }
   }
   
-  // Create footer with author and action
+  // Create footer
   const footer = document.createElement('div');
   footer.className = 'dribbble-card-footer';
   
-  // Add author
-  if (rows[3]) {
-    const authorContainer = document.createElement('div');
-    authorContainer.className = 'dribbble-card-author';
-    
-    const authorImageCell = rows[3].children[0];
-    const authorNameCell = rows[3].children.length > 1 ? rows[3].children[1] : null;
-    
-    if (authorImageCell) {
-      const authorImg = authorImageCell.querySelector('img');
-      if (authorImg) {
-        authorImg.className = 'dribbble-card-author-image';
-        authorContainer.appendChild(authorImg);
-      }
+  // Author section with image (Row 5) and name (Row 6)
+  const authorContainer = document.createElement('div');
+  authorContainer.className = 'dribbble-card-author';
+  
+  // Author image from Row 5
+  if (rows[4]) {
+    const authorImgCell = rows[4].querySelector('div');
+    const authorImg = authorImgCell ? authorImgCell.querySelector('img') : null;
+    if (authorImg) {
+      authorImg.className = 'dribbble-card-author-image';
+      authorContainer.appendChild(authorImg);
     }
-    
+  }
+  
+  // Author name from Row 6
+  if (rows[5]) {
+    const authorNameCell = rows[5].querySelector('div');
     if (authorNameCell) {
       const authorName = document.createElement('span');
       authorName.className = 'dribbble-card-author-name';
       authorName.textContent = authorNameCell.textContent.trim();
       authorContainer.appendChild(authorName);
     }
-    
-    footer.appendChild(authorContainer);
   }
   
-  // Add action button
-  if (rows[4]) {
-    const actionCell = rows[4].children[0];
-    const link = actionCell.querySelector('a');
-    
+  footer.appendChild(authorContainer);
+  
+  // Action button from Row 7
+  if (rows[6]) {
+    const actionCell = rows[6].querySelector('div');
+    const link = actionCell ? actionCell.querySelector('a') : null;
     if (link) {
       link.className = 'dribbble-card-action';
       footer.appendChild(link);
