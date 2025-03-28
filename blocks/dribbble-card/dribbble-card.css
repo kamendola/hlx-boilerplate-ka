@@ -1,0 +1,103 @@
+.dribbble-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.dribbble-card:hover {
+  transform: translateY(-8px);
+}
+
+.dribbble-card-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.dribbble-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dribbble-card:hover .dribbble-card-image {
+  transform: scale(1.05);
+}
+
+.dribbble-card-content {
+  padding: 1.5rem;
+}
+
+.dribbble-card-header {
+  margin-bottom: 1rem;
+}
+
+.dribbble-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.dribbble-card-subtitle {
+  font-size: 0.875rem;
+  color: #ea4c89; /* Dribbble pink */
+  margin: 0;
+}
+
+.dribbble-card-description {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.dribbble-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dribbble-card-author {
+  display: flex;
+  align-items: center;
+}
+
+.dribbble-card-author-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  object-fit: cover;
+}
+
+.dribbble-card-author-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.dribbble-card-action {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #ea4c89; /* Dribbble pink */
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dribbble-card-action:hover {
+  background-color: #d03d74;
+}
